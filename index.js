@@ -22,6 +22,7 @@ class Driver {
     });
   }
 }
+
 class Passenger {
   constructor(name) {
     this.name = name;
@@ -34,17 +35,13 @@ class Passenger {
       return trip.passengerId == this.id;
     });
   }
-
-  drivers(){
-    return this.trips().map(each => {
-      return each.driver()
-    })
+  drivers() {
+    return this.trips().map(trip => {
+      return trip.driver();
+    });
   }
 }
 
-
-
-//this is the "through" table
 class Trip {
   constructor(driver, passenger) {
     this.driverId = driver.id;
