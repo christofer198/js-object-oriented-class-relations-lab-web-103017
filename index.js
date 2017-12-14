@@ -1,30 +1,27 @@
 //has many trips
 //has many passengers though trips
-let userId = 0
+let driverId = 0
 let passengerId = 0
 let tripId = 0
 let store = {drivers: [], passengers: [], trips: []}
 
-class Driver{
-  constructor(name){
-    this.name = name
-    this.id = ++userId
-    store.drivers.push(this)
+class Driver {
+  constructor(name) {
+    this.name = name;
+    this.id = driverId++;
+    store.drivers.push(this);
   }
-
-  trips(){
-    return store.trips.filter(each => {
-      return each.driverId === this.id
-    })
+  trips() {
+    return store.trips.filter(trip => {
+      return trip.driverId == this.id;
+    });
   }
-
   passengers() {
-    return this.trips().map(each => {
-      return each.passenger()
-     })
-   }
+    return this.trips().map(trip => {
+      return trip.passenger();
+    });
+  }
 }
-
 class Passenger {
   constructor(name) {
     this.name = name;
@@ -42,7 +39,6 @@ class Passenger {
     return this.trips().map(each => {
       return each.driver()
     })
-   
   }
 }
 
